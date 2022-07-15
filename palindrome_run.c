@@ -1,14 +1,18 @@
 #include <stdio.h>
 
+// lets define a struct
+
+#define INPUT_LEN (9u)
+
 int main() {
    
-   char test_string[9] = "Top spot";
-   char result_string[9];
+   char test_string[INPUT_LEN] = "Top spot";
+   char result_string[INPUT_LEN];
    int non_space_character_inc = 0;
-   
+
    // want to remove spaces
 
-   for (int index = 0; index<sizeof(test_string); index++)
+   for (int index = 0; index<INPUT_LEN; index++)
    {
       if (test_string[index] != ' ')
       {
@@ -21,7 +25,7 @@ int main() {
 
    // want to remove captial letters
 
-   for (int index = 0; index<sizeof(result_string); index++)
+   for (int index = 0; index<INPUT_LEN; index++)
    {
       if(result_string[index] >= 65 && result_string[index] <= 90)
       {
@@ -32,7 +36,7 @@ int main() {
    printf("Print result_string %s\n", result_string);
    // now want to reverse array and compare
 
-   for(int index = 0; index<sizeof(result_string); index++)
+   for(int index = 0; index<INPUT_LEN; index++)
    {
       
    }
