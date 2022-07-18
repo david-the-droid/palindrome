@@ -3,18 +3,21 @@
 
 // lets define a struct
 
-#define INPUT_LEN (20u)
+#define INPUT_LEN (100u)            // Max input length
+#define LOW_UPPER_CASE_ASCII 32     // Represents capital "A"
+#define HIGH_UPPER_CASE_ASCII 90    // Represents capital "Z"
+#define LOWER_CASE_OFFSET 32        // Represents capital to lower case shift
 
 int main() {
 
-   char input_string[INPUT_LEN] = " ";   // Input string
-   char result_string[INPUT_LEN] = " ";  // De-capitalised, de-spaced and reversed to compare for palindrome
-   char comparison_string[INPUT_LEN];    // comparison char array for lower case comparison copy
-   int non_space_character_inc = 0;      // Counts N.O of non space characters to form index for result_string
+   char input_string[INPUT_LEN] = " ";         // Input string
+   char result_string[INPUT_LEN] = " ";        // De-capitalised, de-spaced and reversed to compare for palindrome
+   char comparison_string[INPUT_LEN] = " ";    // comparison char array for lower case comparison copy
+   int non_space_character_inc = 0;            // Counts N.O of non space characters to form index for result_string
 
    // want to get user input (not yet implemented)
 
-   strcpy(input_string, "Top Spot");
+   strncpy(input_string, "Top Spot", INPUT_LEN); // Examples "Top Spot", "1221"
 
    // want to remove spaces
    
@@ -33,17 +36,18 @@ int main() {
    
    for (int index = 0; index<INPUT_LEN; index++)
    {
-      if(result_string[index] >= 65 && result_string[index] <= 90)
+      if(result_string[index] >= LOW_UPPER_CASE_ASCII && result_string[index] <= HIGH_UPPER_CASE_ASCII)
       {
-         result_string[index] = result_string[index] + 32; // offset ascii by 32 to shift upper to lower case
+         result_string[index] = result_string[index] + LOWER_CASE_OFFSET; // offset ascii by 32 to shift upper to lower case
       }
    }
 
    // need a strcopy here to form a comparison string once the result_string is reversed
 
-   strcpy(comparison_string, result_string);
+   strncpy(comparison_string, result_string, INPUT_LEN);
 
    printf("Print result_string %s\n", result_string);
+   
    // now want to reverse array and compare
 
    strrev(result_string);
@@ -52,7 +56,7 @@ int main() {
 
    // now need comparison
 
-   if (strcmp(result_string, comparison_string) == 0)
+   if (strncmp(result_string, comparison_string, INPUT_LEN) == 0)
    {
       printf("True\n");
    }
